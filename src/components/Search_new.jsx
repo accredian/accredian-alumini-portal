@@ -30,6 +30,8 @@ import FormControl from '@mui/material/FormControl';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
+// import Button from "@material-ui/core/Button";
+import ButtonGroup from "@material-ui/core/ButtonGroup";
 import dp from '../images/neutral_dp.jpg'
 import GitHubIcon from '@mui/icons-material/GitHub';
 import TextareaAutosize from '@mui/base/TextareaAutosize';
@@ -63,7 +65,7 @@ const Search2 =()=>{
     const [designationvalue, setDesignation] = useState('');
     const [organization, setOrganization] = useState('');
     const [techval, setTech] = useState('');
-    const [exp, setExp] = useState('');
+    const [exp, setExp] = useState(0);
     const[image,setImage]=useState('')
     const[linkedin,setLinkedin]=useState('')
     const[github,setGithub]=useState('')
@@ -143,7 +145,7 @@ const Search2 =()=>{
        
     },[search])
 
-    useEffect(()=>{
+    const serachFun=()=>{
       const sendData = {
         gender:"male"
        };
@@ -156,25 +158,30 @@ const Search2 =()=>{
          console.log(res,"data")
         //  setData(res.data)
          setsearchData(res.data)
+         const sendData2 = {
+          gender:"male"
+         };
+         axios
+         .post(
+           `http://localhost:5000/alumni/get_alumni?page=${1}&pageSize=20`,
+           JSON.stringify(sendData2),
+           options
+         ).then((res)=>{
+          
+           handleCloseLoader()
+           console.log(res,"data")
+           setData(res.data)
+           // setpaginatedData(res.data)
+           // setsearchData(res.data)
+         })
        })
-    },[reset])
+    }
+    // useEffect(()=>{
+    //   serachFun()
+    // },[reset])
     useEffect(()=>{
         handleOpenLoader()
-      const sendData = {
-       gender:"male"
-      };
-      axios
-      .post(
-        `http://localhost:5000/alumni/get_alumni?page=${1}&pageSize=20`,
-        JSON.stringify(sendData),
-        options
-      ).then((res)=>{
-        handleCloseLoader()
-        console.log(res,"data")
-        setData(res.data)
-        // setpaginatedData(res.data)
-        // setsearchData(res.data)
-      })
+        serachFun()
     },[page])
     
     const handleClickOpen = (n,c,i,l,g,e) => {
@@ -228,7 +235,7 @@ const Technology=[
   "Automation"
 ]
 const Exp=[
-16,5,3,4,6
+1,2,3,4,5,6,7,8,9,10
 ]
 // const fetchData=(params)=>{
 //   const queryString = Object.keys(params)
@@ -247,6 +254,7 @@ const Exp=[
 //   })
 // }
 const Apply=(params)=>{
+  handleOpenLoader()
   document.getElementById('pagi').style.display="none"
   // const selectedParams = Object.keys(checkboxes)
   // .filter(key => checkboxes[key])
@@ -264,6 +272,7 @@ const Apply=(params)=>{
     options
   ).then((res)=>{
     console.log(res,"datafilter")
+    handleCloseLoader()
     if(res.data.message=='Not Found'){
         setData([])
     }
@@ -283,6 +292,7 @@ const Apply=(params)=>{
     // JSON.stringify(sendData),
     options
   ).then((res)=>{
+    handleCloseLoader()
     console.log(res,"datafilter")
     if(res.data.message=='Not Found'){
       setData([])
@@ -301,6 +311,7 @@ const Apply=(params)=>{
     // JSON.stringify(sendData),
     options
   ).then((res)=>{
+    handleCloseLoader()
     console.log(res,"datafilter")
     if(res.data.message=='Not Found'){
       setData([])
@@ -319,6 +330,7 @@ const Apply=(params)=>{
     // JSON.stringify(sendData),
     options
   ).then((res)=>{
+    handleCloseLoader()
     console.log(res,"datafilter")
     if(res.data.message=='Not Found'){
       setData([])
@@ -337,6 +349,7 @@ const Apply=(params)=>{
       // JSON.stringify(sendData),
       options
     ).then((res)=>{
+      handleCloseLoader()
       console.log(res,"datafilter")
       if(res.data.message=='Not Found'){
         setData([])
@@ -355,6 +368,7 @@ const Apply=(params)=>{
       // JSON.stringify(sendData),
       options
     ).then((res)=>{
+      handleCloseLoader()
         if(res.data.message=='Not Found'){
             setData([])
         }
@@ -373,6 +387,7 @@ const Apply=(params)=>{
       // JSON.stringify(sendData),
       options
     ).then((res)=>{
+      handleCloseLoader()
       console.log(res,"datafilter")
       if(res.data.message=='Not Found'){
         setData([])
@@ -391,6 +406,7 @@ const Apply=(params)=>{
       // JSON.stringify(sendData),
       options
     ).then((res)=>{
+      handleCloseLoader()
       console.log(res,"datafilter")
       
       if(res.data.message=='Not Found'){
@@ -410,6 +426,7 @@ const Apply=(params)=>{
       // JSON.stringify(sendData),
       options
     ).then((res)=>{
+      handleCloseLoader()
       console.log(res,"datafilter")
      
       if(res.data.message=='Not Found'){
@@ -429,6 +446,7 @@ const Apply=(params)=>{
       // JSON.stringify(sendData),
       options
     ).then((res)=>{
+      handleCloseLoader()
       console.log(res,"datafilter")
       if(res.data.message=='Not Found'){
         setData([])
@@ -448,6 +466,7 @@ const Apply=(params)=>{
       // JSON.stringify(sendData),
       options
     ).then((res)=>{
+      handleCloseLoader()
       console.log(res,"datafilter")
       if(res.data.message=='Not Found'){
         setData([])
@@ -466,6 +485,7 @@ const Apply=(params)=>{
       // JSON.stringify(sendData),
       options
     ).then((res)=>{
+      handleCloseLoader()
       console.log(res,"datafilter")
       if(res.data.message=='Not Found'){
         setData([])
@@ -484,6 +504,7 @@ const Apply=(params)=>{
       // JSON.stringify(sendData),
       options
     ).then((res)=>{
+      handleCloseLoader()
       console.log(res,"datafilter")
       if(res.data.message=='Not Found'){
         setData([])
@@ -502,6 +523,7 @@ const Apply=(params)=>{
       // JSON.stringify(sendData),
       options
     ).then((res)=>{
+      handleCloseLoader()
       console.log(res,"datafilter")
       if(res.data.message=='Not Found'){
         setData([])
@@ -520,6 +542,7 @@ const Apply=(params)=>{
       // JSON.stringify(sendData),
       options
     ).then((res)=>{
+      handleCloseLoader()
       console.log(res,"datafilter")
       if(res.data.message=='Not Found'){
         setData([])
@@ -627,7 +650,7 @@ const Apply=(params)=>{
     setDesignation('')
     setOrganization('')
     setTech('')
-    setExp('')
+    setExp(0)
       const sendData = {
         gender:"male"
        };
@@ -637,11 +660,13 @@ const Apply=(params)=>{
          JSON.stringify(sendData),
          options
        ).then((res)=>{
+        serachFun()
         handleCloseLoader()
          console.log(res,"data")
          setData(res.data)
          setpaginatedData(res.data)
         //  setsearchData(res.data)
+        
        })
 
     }
@@ -696,7 +721,14 @@ const Apply=(params)=>{
       // Convert the option to a string
       return String(option);
     };
-  
+    const handleIncrement=()=>{
+      setExp(exp+1)
+    }
+    const handledecrement=()=>{
+      setExp(exp-1)
+    }
+    const displayCounter = exp > 0;
+
     return(
         <>
         
@@ -849,22 +881,10 @@ const Apply=(params)=>{
     />
     </FormControl>
 </Box>
+{/* sx={{ m: 1, width: 135,textAlign:"left",fontSize:"14px",display:"flex",border:"1px solid #d3d3d3",borderRadius:"5px" }} */}
            <Box>
            <FormControl sx={{ m: 1, width: 135,textAlign:"left",fontSize:"14px" }} size="small">
-      {/* <InputLabel sx={{fontSize:"14px"}} id="demo-select-small-label">Experience</InputLabel>
-      <Select
-        labelId="demo-select-small-label"
-        id="demo-select-small"
-        value={exp}
-        label="Designation"
-        onChange={handleCheckExp}
-      >
-        {Exp.map((val)=>(
-             <MenuItem sx={{fontSize:"14px",height:25}} value={val}>{val}</MenuItem>
-        ))}
-       
-       
-      </Select> */}
+     
        <Autocomplete
       disablePortal
      size="small"
@@ -886,6 +906,11 @@ const Apply=(params)=>{
       )}
     />
     </FormControl>
+    
+        {/* <Box width="48px" sx={{color:"#fff",background:"#d3d3d3","&:hover":{color:"#fff",background:"#d3d3d3"},cursor:"pointer",textAlign:"center",p:1,borderRadius:"2px"}} size="small" onClick={handleIncrement}>+</Box>
+         <Box width="40px" sx={{textAlign:"center",p:1}} size="small" disabled>{exp}</Box>
+         {displayCounter &&  <Box width="48px" sx={{color:"#fff",background:"#d3d3d3","&:hover":{color:"#fff",background:"#d3d3d3"},cursor:"pointer",textAlign:"center",p:1,borderRadius:"2px"}} size="small" onClick={handledecrement}>-</Box> } */}
+    
            </Box>
      {/* <Box>
      <ListItemButton onClick={handleClickLoc}>
@@ -1047,20 +1072,7 @@ const Apply=(params)=>{
                  </Box>
                             <Box>
                             <FormControl sx={{ m: 1, width: 135,textAlign:"left",fontSize:"14px" }} size="small">
-                       {/* <InputLabel sx={{fontSize:"14px"}} id="demo-select-small-label">Experience</InputLabel>
-                       <Select
-                         labelId="demo-select-small-label"
-                         id="demo-select-small"
-                         value={exp}
-                         label="Designation"
-                         onChange={handleCheckExp}
-                       >
-                         {Exp.map((val)=>(
-                              <MenuItem sx={{fontSize:"14px",height:25}} value={val}>{val}</MenuItem>
-                         ))}
-                        
-                        
-                       </Select> */}
+                      
                         <Autocomplete
                        disablePortal
                       size="small"
@@ -1083,6 +1095,14 @@ const Apply=(params)=>{
                      />
                      </FormControl>
                             </Box>
+                             {/* <Box >
+          
+     
+        <Box width="48px" sx={{color:"#fff",background:"#d3d3d3","&:hover":{color:"#fff",background:"#d3d3d3"},cursor:"pointer",textAlign:"center",p:1,borderRadius:"2px"}} size="small" onClick={handleIncrement}>+</Box>
+         <Box width="40px" sx={{textAlign:"center",p:1}} size="small" disabled>{exp}</Box>
+     {displayCounter &&  <Box width="48px" sx={{color:"#fff",background:"#d3d3d3","&:hover":{color:"#fff",background:"#d3d3d3"},cursor:"pointer",textAlign:"center",p:1,borderRadius:"2px"}} size="small" onClick={handledecrement}>-</Box> }
+      
+           </Box> */}
 
                   </Box>
 
@@ -1246,14 +1266,14 @@ const Apply=(params)=>{
           
             </Box>
             <Box>
-            <img style={{borderRadius:"9999px",width:"7rem",height:"7rem"}} src={image?`https://www.insaid.co/wp-content/uploads/profile/${image}`:dp} alt="logo"  /> 
+            <img style={{borderRadius:"9999px",width:"7rem",height:"7rem"}} src={image?`https://www.accredian.com/wp-content/uploads/profile/${image}`:dp} alt="logo"  /> 
           
             </Box>
            
             </Box>
             {/* <hr/> */}
             <Box sx={{borderBottom:"1px solid #e7ecf2",p:1,mt:0.5}}>
-            <Typography sx={{}}>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus ipsam, porro dignissimos quae quas vitae, tenetur necessitatibus unde facere quia aliquid vel consequatur, at eligendi odit! Voluptate maiores architecto modi!</Typography>
+            <Typography sx={{}}>Discover and connect with alumni who share your journey. Click the "Send Message" button to reach out, network, and send custom messages to reconnect. Join the alumni network and start connecting today.</Typography>
            
             </Box>
 
