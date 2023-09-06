@@ -99,7 +99,7 @@ const Search2 =()=>{
          };
          axios
          .post(
-           `http://localhost:5000/alumni/validate`,
+           `https://faculty-preobarding.de.r.appspot.com/alumni/validate`,
            JSON.stringify(sendData),
            options
          ).then((res)=>{
@@ -208,7 +208,7 @@ else{
        };
        axios
        .post(
-         `http://localhost:5000/alumni/search`,
+         `https://faculty-preobarding.de.r.appspot.com/alumni/search`,
          JSON.stringify(sendData),
          options
        ).then((res)=>{
@@ -220,7 +220,7 @@ else{
          };
          axios
          .post(
-           `http://localhost:5000/alumni/get_alumni?page=${1}&pageSize=20`,
+           `https://faculty-preobarding.de.r.appspot.com/alumni/get_alumni?page=${1}&pageSize=20`,
            JSON.stringify(sendData2),
            options
          ).then((res)=>{
@@ -292,7 +292,7 @@ const Technology=[
   "Automation"
 ]
 const Exp=[
-0,1,2,3,4,5,6,7,8,9,10
+1,2,3,4,5,6,7,8,9,10
 ]
 // const fetchData=(params)=>{
 //   const queryString = Object.keys(params)
@@ -300,7 +300,7 @@ const Exp=[
 //   .join('&');
 //   axios
 //   .post(
-//     `http://localhost:5000/alumni/filter?designation=${queryString}`,
+//     `https://faculty-preobarding.de.r.appspot.com/alumni/filter?designation=${queryString}`,
 //     // JSON.stringify(sendData),
 //     options
 //   ).then((res)=>{
@@ -321,10 +321,13 @@ const Apply=(params)=>{
   // }, {});
   // fetchData(selectedParams);
   // setPage(0)
+if(designationvalue==''&&organization==''&&techval==''&&exp==''){
+  handleCloseLoader()
+}
   if(designationvalue&&organization==''&&techval==''&&exp==''){
     axios
   .post(
-    `http://localhost:5000/alumni/filter?designation=${designationvalue}`,
+    `https://faculty-preobarding.de.r.appspot.com/alumni/filter?designation=${designationvalue}`,
     // JSON.stringify(sendData),
     options
   ).then((res)=>{
@@ -345,7 +348,7 @@ const Apply=(params)=>{
   if(organization&&designationvalue==''&&techval==''&&exp==''){
     axios
   .post(
-    `http://localhost:5000/alumni/filter?current_organization=${organization}`,
+    `https://faculty-preobarding.de.r.appspot.com/alumni/filter?current_organization=${organization}`,
     // JSON.stringify(sendData),
     options
   ).then((res)=>{
@@ -364,7 +367,7 @@ const Apply=(params)=>{
   if(techval&&designationvalue==''&&organization==''&&exp==''){
     axios
   .post(
-    `http://localhost:5000/alumni/filter?technology=${techval}`,
+    `https://faculty-preobarding.de.r.appspot.com/alumni/filter?technology=${techval}`,
     // JSON.stringify(sendData),
     options
   ).then((res)=>{
@@ -383,7 +386,7 @@ const Apply=(params)=>{
   if(exp&&designationvalue==''&&organization==''&&techval==''){
     axios
   .post(
-    `http://localhost:5000/alumni/filter?work_ex=${exp}`,
+    `https://faculty-preobarding.de.r.appspot.com/alumni/filter?work_ex=${exp}`,
     // JSON.stringify(sendData),
     options
   ).then((res)=>{
@@ -402,7 +405,7 @@ const Apply=(params)=>{
   if(designationvalue&&organization&&techval==''&&exp==''){
     axios
     .post(
-      `http://localhost:5000/alumni/filter?designation=${designationvalue}&current_organization=${organization}`,
+      `https://faculty-preobarding.de.r.appspot.com/alumni/filter?designation=${designationvalue}&current_organization=${organization}`,
       // JSON.stringify(sendData),
       options
     ).then((res)=>{
@@ -421,7 +424,7 @@ const Apply=(params)=>{
   if(designationvalue&&techval&&organization==''&&exp==''){
     axios
     .post(
-      `http://localhost:5000/alumni/filter?designation=${designationvalue}&technology=${techval}`,
+      `https://faculty-preobarding.de.r.appspot.com/alumni/filter?designation=${designationvalue}&technology=${techval}`,
       // JSON.stringify(sendData),
       options
     ).then((res)=>{
@@ -440,7 +443,7 @@ const Apply=(params)=>{
   if(designationvalue&&exp&&techval==''&&organization==''){
     axios
     .post(
-      `http://localhost:5000/alumni/filter?designation=${designationvalue}&work_ex=${exp}`,
+      `https://faculty-preobarding.de.r.appspot.com/alumni/filter?designation=${designationvalue}&work_ex=${exp}`,
       // JSON.stringify(sendData),
       options
     ).then((res)=>{
@@ -459,7 +462,7 @@ const Apply=(params)=>{
   if(techval&&exp&&designationvalue==''&&organization==''){
     axios
     .post(
-      `http://localhost:5000/alumni/filter?technology=${techval}&work_ex=${exp}`,
+      `https://faculty-preobarding.de.r.appspot.com/alumni/filter?technology=${techval}&work_ex=${exp}`,
       // JSON.stringify(sendData),
       options
     ).then((res)=>{
@@ -479,7 +482,7 @@ const Apply=(params)=>{
   if(techval&&organization&&designationvalue==''&&exp==''){
     axios
     .post(
-      `http://localhost:5000/alumni/filter?technology=${techval}&current_organization=${organization}`,
+      `https://faculty-preobarding.de.r.appspot.com/alumni/filter?technology=${techval}&current_organization=${organization}`,
       // JSON.stringify(sendData),
       options
     ).then((res)=>{
@@ -499,7 +502,7 @@ const Apply=(params)=>{
   if(exp&&organization&&designationvalue==''&&techval==''){
     axios
     .post(
-      `http://localhost:5000/alumni/filter?work_ex=${exp}&current_organization=${organization}`,
+      `https://faculty-preobarding.de.r.appspot.com/alumni/filter?work_ex=${exp}&current_organization=${organization}`,
       // JSON.stringify(sendData),
       options
     ).then((res)=>{
@@ -519,7 +522,7 @@ const Apply=(params)=>{
   if(designationvalue&&organization&&techval&&exp==''){
     axios
     .post(
-      `http://localhost:5000/alumni/filter?designation=${designationvalue}&current_organization=${organization}&technology=${techval}`,
+      `https://faculty-preobarding.de.r.appspot.com/alumni/filter?designation=${designationvalue}&current_organization=${organization}&technology=${techval}`,
       // JSON.stringify(sendData),
       options
     ).then((res)=>{
@@ -538,7 +541,7 @@ const Apply=(params)=>{
   if(designationvalue==''&&organization&&techval&&exp){
     axios
     .post(
-      `http://localhost:5000/alumni/filter?work_ex=${exp}&current_organization=${organization}&technology=${techval}`,
+      `https://faculty-preobarding.de.r.appspot.com/alumni/filter?work_ex=${exp}&current_organization=${organization}&technology=${techval}`,
       // JSON.stringify(sendData),
       options
     ).then((res)=>{
@@ -557,7 +560,7 @@ const Apply=(params)=>{
   if(designationvalue&&organization==''&&techval&&exp){
     axios
     .post(
-      `http://localhost:5000/alumni/filter?work_ex=${exp}&designation=${designationvalue}&technology=${techval}`,
+      `https://faculty-preobarding.de.r.appspot.com/alumni/filter?work_ex=${exp}&designation=${designationvalue}&technology=${techval}`,
       // JSON.stringify(sendData),
       options
     ).then((res)=>{
@@ -576,7 +579,7 @@ const Apply=(params)=>{
   if(designationvalue&&organization&&techval==''&&exp){
     axios
     .post(
-      `http://localhost:5000/alumni/filter?work_ex=${exp}&designation=${designationvalue}&current_organization=${organization}`,
+      `https://faculty-preobarding.de.r.appspot.com/alumni/filter?work_ex=${exp}&designation=${designationvalue}&current_organization=${organization}`,
       // JSON.stringify(sendData),
       options
     ).then((res)=>{
@@ -595,7 +598,7 @@ const Apply=(params)=>{
   if(designationvalue&&organization&&techval&&exp){
     axios
     .post(
-      `http://localhost:5000/alumni/filter?designation=${designationvalue}&current_organization=${organization}&technology=${techval}&work_ex=${exp}`,
+      `https://faculty-preobarding.de.r.appspot.com/alumni/filter?designation=${designationvalue}&current_organization=${organization}&technology=${techval}&work_ex=${exp}`,
       // JSON.stringify(sendData),
       options
     ).then((res)=>{
@@ -713,7 +716,7 @@ const Apply=(params)=>{
        };
        axios
        .post(
-         `http://localhost:5000/alumni/get_alumni?page=${1}&pageSize=20`,
+         `https://faculty-preobarding.de.r.appspot.com/alumni/get_alumni?page=${1}&pageSize=20`,
          JSON.stringify(sendData),
          options
        ).then((res)=>{
@@ -738,7 +741,7 @@ const Apply=(params)=>{
        };
        axios
        .post(
-         `http://localhost:5000/alumnimail/sendmail`,
+         `https://faculty-preobarding.de.r.appspot.com/alumnimail/sendmail`,
          JSON.stringify(sendData),
          options
        ).then((res)=>{
@@ -993,7 +996,7 @@ const Apply=(params)=>{
      </Box> */}
      <Box sx={{display:"flex",justifyContent:"space-between"}}>
      <Box>
-      <Button sx={{textTransform:"none",background:"#00bfa9",mt:1.5,"&:hover":{color:"#fff",background:"#00c4b5"}}} onClick={Apply} variant="contained" size="small">
+      <Button  sx={{textTransform:"none",background:"#00bfa9",mt:1.5,"&:hover":{color:"#fff",background:"#00c4b5"}}} onClick={Apply} variant="contained" size="small">
         Apply Filters
       </Button>
      </Box>
