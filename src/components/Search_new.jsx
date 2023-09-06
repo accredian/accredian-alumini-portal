@@ -36,6 +36,7 @@ import dp from '../images/neutral_dp.jpg'
 import GitHubIcon from '@mui/icons-material/GitHub';
 import TextareaAutosize from '@mui/base/TextareaAutosize';
 import { ToastContainer, toast } from "react-toastify";
+import Page404 from "./Page404";
 import "react-toastify/dist/ReactToastify.css";
 const options = {
   headers: {
@@ -71,11 +72,59 @@ const Search2 =()=>{
     const[github,setGithub]=useState('')
     const[alumEmail,setAlumemail]=useState('')
     const[reset,setReset]=useState(true)
+    const[btn,setbtn]=useState(true)
+    const[subbtn,setsubbtn]=useState(true)
     const [isChecked, setIsChecked] = useState(false);
     const [checkboxes, setCheckboxes] = useState([]);
     const [checkboxesorg, setCheckboxesorg] = useState([]);
     const [checkboxestech, setCheckboxestech] = useState([]);
     const [checkboxeswork, setCheckboxeswork] = useState([]);
+
+
+
+    useEffect(() => {
+      // Get the current URL
+      const currentUrl = window.location.href;
+  
+      // Split the URL by '/' to get the last part after 'com/'
+      const parts = currentUrl.split('/');
+      const base64String = parts[parts.length - 1];
+      console.log(base64String)
+      // Decode the base64 string
+      try {
+        const decodedString = atob(base64String);
+        console.log('Decoded String:', decodedString);
+        const sendData = {
+          user_id:parseInt(decodedString)
+         };
+         axios
+         .post(
+           `http://localhost:5000/alumni/validate`,
+           JSON.stringify(sendData),
+           options
+         ).then((res)=>{
+          if(res.data.message=='data not found'){
+            setsubbtn(false)
+          } 
+          else{
+           
+            setEmail(res.data[0].email)
+            setsubbtn(true)
+          }
+         })
+      } catch (error) {
+        console.error('Error decoding base64 string:', error);
+      }
+    }, []);
+
+useEffect(()=>{
+if(message){
+  setbtn(false)
+}
+else{
+  setbtn(true)
+}
+},[message])
 
 
     const [openLoader, setOpenloader] = useState(false);
@@ -85,7 +134,15 @@ const Search2 =()=>{
   const handleOpenLoader = () => {
     setOpenloader(true);
   };
-
+// useEffect(()=>{
+//   if(email&&message){
+//     setsubbtn(false)
+//   }
+//   else{
+//     setsubbtn(false)
+//   }
+// },[email,message])
+  
     // const [isBottomReached, setIsBottomReached] = useState(false);
 
   // useEffect(() => {
@@ -121,7 +178,7 @@ const Search2 =()=>{
   //     [name]: checked
   //   }));
   // };
-  console.log(serachData,"dtttt")
+  // console.log(serachData,"dtttt")
   const _DATA = usePagination(data, 20);
     const handleChange=(e)=>{
       setSearch(e.target.value)
@@ -131,19 +188,19 @@ const Search2 =()=>{
       setPage(p);
       _DATA.jump(p);
     };
-    function filterData() {
-      const filteredResults = serachData.filter((item) => { return item.firstname.includes(search)});
-      console.log(filteredResults,"rrrr")
-      setData(filteredResults);
-    }
+    // function filterData() {
+    //   const filteredResults = serachData.filter((item) => { return item.firstname.includes(search)});
+    //   // console.log(filteredResults,"rrrr")
+    //   setData(filteredResults);
+    // }
 
-    useEffect(()=>{
-      filterData()
-      if(search==''){
-        setData(paginatedData)
-      }
+    // useEffect(()=>{
+    //   filterData()
+    //   if(search==''){
+    //     setData(paginatedData)
+    //   }
        
-    },[search])
+    // },[search])
 
     const serachFun=()=>{
       const sendData = {
@@ -155,9 +212,9 @@ const Search2 =()=>{
          JSON.stringify(sendData),
          options
        ).then((res)=>{
-         console.log(res,"data")
+        //  console.log(res,"data")
         //  setData(res.data)
-         setsearchData(res.data)
+         setsearchData(res.data.length)
          const sendData2 = {
           gender:"male"
          };
@@ -169,7 +226,7 @@ const Search2 =()=>{
          ).then((res)=>{
           
            handleCloseLoader()
-           console.log(res,"data")
+          //  console.log(res,"data")
            setData(res.data)
            // setpaginatedData(res.data)
            // setsearchData(res.data)
@@ -235,7 +292,7 @@ const Technology=[
   "Automation"
 ]
 const Exp=[
-1,2,3,4,5,6,7,8,9,10
+0,1,2,3,4,5,6,7,8,9,10
 ]
 // const fetchData=(params)=>{
 //   const queryString = Object.keys(params)
@@ -271,7 +328,7 @@ const Apply=(params)=>{
     // JSON.stringify(sendData),
     options
   ).then((res)=>{
-    console.log(res,"datafilter")
+    // console.log(res,"datafilter")
     handleCloseLoader()
     if(res.data.message=='Not Found'){
         setData([])
@@ -279,7 +336,7 @@ const Apply=(params)=>{
     else{
         setData(res.data)
         // setpaginatedData(res.data)
-        setsearchData(res.data)
+        setsearchData(res.data.length)
     }
    
     // setsearchData(res.data)
@@ -293,14 +350,14 @@ const Apply=(params)=>{
     options
   ).then((res)=>{
     handleCloseLoader()
-    console.log(res,"datafilter")
+    // console.log(res,"datafilter")
     if(res.data.message=='Not Found'){
       setData([])
   }
   else{
       setData(res.data)
       // setpaginatedData(res.data)
-      setsearchData(res.data)
+      setsearchData(res.data.length)
   }
   })
   }
@@ -312,14 +369,14 @@ const Apply=(params)=>{
     options
   ).then((res)=>{
     handleCloseLoader()
-    console.log(res,"datafilter")
+    // console.log(res,"datafilter")
     if(res.data.message=='Not Found'){
       setData([])
   }
   else{
       setData(res.data)
       // setpaginatedData(res.data)
-      setsearchData(res.data)
+      setsearchData(res.data.length)
   }
   })
   }
@@ -331,14 +388,14 @@ const Apply=(params)=>{
     options
   ).then((res)=>{
     handleCloseLoader()
-    console.log(res,"datafilter")
+    // console.log(res,"datafilter")
     if(res.data.message=='Not Found'){
       setData([])
   }
   else{
       setData(res.data)
       // setpaginatedData(res.data)
-      setsearchData(res.data)
+      setsearchData(res.data.length)
   }
   })
   }
@@ -350,14 +407,14 @@ const Apply=(params)=>{
       options
     ).then((res)=>{
       handleCloseLoader()
-      console.log(res,"datafilter")
+      // console.log(res,"datafilter")
       if(res.data.message=='Not Found'){
         setData([])
     }
     else{
         setData(res.data)
         // setpaginatedData(res.data)
-        setsearchData(res.data)
+        setsearchData(res.data.length)
     }
     })
   }
@@ -375,7 +432,7 @@ const Apply=(params)=>{
         else{
             setData(res.data)
             // setpaginatedData(res.data)
-            setsearchData(res.data)
+            setsearchData(res.data.length)
         }
       // setsearchData(res.data)
     })
@@ -388,14 +445,14 @@ const Apply=(params)=>{
       options
     ).then((res)=>{
       handleCloseLoader()
-      console.log(res,"datafilter")
+      // console.log(res,"datafilter")
       if(res.data.message=='Not Found'){
         setData([])
     }
     else{
         setData(res.data)
         // setpaginatedData(res.data)
-        setsearchData(res.data)
+        setsearchData(res.data.length)
     }
     })
   }
@@ -407,7 +464,7 @@ const Apply=(params)=>{
       options
     ).then((res)=>{
       handleCloseLoader()
-      console.log(res,"datafilter")
+      // console.log(res,"datafilter")
       
       if(res.data.message=='Not Found'){
         setData([])
@@ -415,7 +472,7 @@ const Apply=(params)=>{
     else{
         setData(res.data)
         // setpaginatedData(res.data)
-        setsearchData(res.data)
+        setsearchData(res.data.length)
     }
     })
   }
@@ -427,7 +484,7 @@ const Apply=(params)=>{
       options
     ).then((res)=>{
       handleCloseLoader()
-      console.log(res,"datafilter")
+      // console.log(res,"datafilter")
      
       if(res.data.message=='Not Found'){
         setData([])
@@ -435,7 +492,7 @@ const Apply=(params)=>{
     else{
         setData(res.data)
         // setpaginatedData(res.data)
-        setsearchData(res.data)
+        setsearchData(res.data.length)
     }
     })
   }
@@ -447,14 +504,14 @@ const Apply=(params)=>{
       options
     ).then((res)=>{
       handleCloseLoader()
-      console.log(res,"datafilter")
+      // console.log(res,"datafilter")
       if(res.data.message=='Not Found'){
         setData([])
     }
     else{
         setData(res.data)
         // setpaginatedData(res.data)
-        setsearchData(res.data)
+        setsearchData(res.data.length)
     }
     })
   }
@@ -467,14 +524,14 @@ const Apply=(params)=>{
       options
     ).then((res)=>{
       handleCloseLoader()
-      console.log(res,"datafilter")
+      // console.log(res,"datafilter")
       if(res.data.message=='Not Found'){
         setData([])
     }
     else{
         setData(res.data)
         // setpaginatedData(res.data)
-        setsearchData(res.data)
+        setsearchData(res.data.length)
     }
     })
   }
@@ -486,14 +543,14 @@ const Apply=(params)=>{
       options
     ).then((res)=>{
       handleCloseLoader()
-      console.log(res,"datafilter")
+      // console.log(res,"datafilter")
       if(res.data.message=='Not Found'){
         setData([])
     }
     else{
         setData(res.data)
         // setpaginatedData(res.data)
-        setsearchData(res.data)
+        setsearchData(res.data.length)
     }
     })
   }
@@ -505,14 +562,14 @@ const Apply=(params)=>{
       options
     ).then((res)=>{
       handleCloseLoader()
-      console.log(res,"datafilter")
+      // console.log(res,"datafilter")
       if(res.data.message=='Not Found'){
         setData([])
     }
     else{
         setData(res.data)
         // setpaginatedData(res.data)
-        setsearchData(res.data)
+        setsearchData(res.data.length)
     }
     })
   }
@@ -524,14 +581,14 @@ const Apply=(params)=>{
       options
     ).then((res)=>{
       handleCloseLoader()
-      console.log(res,"datafilter")
+      // console.log(res,"datafilter")
       if(res.data.message=='Not Found'){
         setData([])
     }
     else{
         setData(res.data)
         // setpaginatedData(res.data)
-        setsearchData(res.data)
+        setsearchData(res.data.length)
     }
     })
   }
@@ -543,14 +600,14 @@ const Apply=(params)=>{
       options
     ).then((res)=>{
       handleCloseLoader()
-      console.log(res,"datafilter")
+      // console.log(res,"datafilter")
       if(res.data.message=='Not Found'){
         setData([])
     }
     else{
         setData(res.data)
         // setpaginatedData(res.data)
-        setsearchData(res.data)
+        setsearchData(res.data.length)
     }
     })
   }
@@ -558,7 +615,7 @@ const Apply=(params)=>{
 }
    
 
-    console.log(alumEmail,"mailllll")
+    // console.log(alumEmail,"mailllll")
     const handleClick = () => {
       // setCheckboxes([]);
       setOpen(!open);
@@ -575,9 +632,9 @@ const Apply=(params)=>{
     const handleClickLoc = () => {
       setOpenloc(!openloc);
     };
-    const handleChangeEmail = (e) => {
-      setEmail(e.target.value);
-    };
+    // const handleChangeEmail = (e) => {
+    //   setEmail(e.target.value);
+    // };
     const handleChangeMessage = (e) => {
       setMessage(e.target.value);
     };
@@ -672,6 +729,7 @@ const Apply=(params)=>{
     }
 
     const handleSubmit=()=>{
+      handleOpenLoader()
       const sendData = {
         email:alumEmail,
         name:name,
@@ -685,7 +743,7 @@ const Apply=(params)=>{
          options
        ).then((res)=>{
         handleCloseLoader()
-         console.log(res,"data")
+        //  console.log(res,"data")
          if(res.data.status==200){
           toast.success("Your message has been sent to the alum", {
             position: "top-right",
@@ -713,7 +771,7 @@ const Apply=(params)=>{
          // setsearchData(res.data)
        })
     }
-    console.log(organization,"lll")
+    // console.log(organization,"lll")
     const handleblur=()=>{
 
     }
@@ -731,8 +789,9 @@ const Apply=(params)=>{
 
     return(
         <>
-        
-        <Box sx={{background:"#eff1f2",height:"auto",width:{xs:620,lg:"auto"},pt:15}}>
+        {subbtn?(
+          <Box>
+              <Box sx={{background:"#eff1f2",height:"auto",width:{xs:620,lg:"auto"},pt:15}}>
             <Box sx={{display:"flex",justifyContent:"center",placeContent:"center"}}>
                 <Paper elevation={3} sx={{borderRadius:"4px",p:2,width:{xs:600,lg:"auto"}}}>
                     <Box sx={{position:"absolute",ml:{xs:58,lg:84},mt:-2}}>
@@ -758,7 +817,7 @@ const Apply=(params)=>{
 
                 </Box>
                 </Box> */}
-                <Box sx={{display:"flex"}}><Typography sx={{mt:2,fontWeight:'bold',textAlign:"left",ml:2}}>{serachData.length}</Typography><Typography sx={{mt:2,ml:1}}>Accredians</Typography></Box>
+                <Box sx={{display:"flex"}}><Typography sx={{mt:2,fontWeight:'bold',textAlign:"left",ml:2}}>{serachData}</Typography><Typography sx={{mt:2,ml:1}}>Accredians</Typography></Box>
                 
                 <Box sx={{
                     background: "#00bfa9",
@@ -1315,20 +1374,21 @@ const Apply=(params)=>{
       placeholder="Enter your Message"
       style={{ width: 480 }}
     />
-          <TextField
+          {/* <TextField
             autoFocus
             margin="dense"
             id="name"
             label=" Enter your email"
             type="email"
+            value={email?email:''}
             // fullWidth
-            onChange={handleChangeEmail}
+            // onChange={handleChangeEmail}
             style={{ width: 480 }}
             variant="standard"
-          />
+          /> */}
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleSubmit}>Submit</Button>
+          <Button disabled={btn} onClick={handleSubmit}>Submit</Button>
           <Button onClick={handleCloseMess}>Close</Button>
         </DialogActions>
       </Dialog>
@@ -1341,6 +1401,13 @@ const Apply=(params)=>{
         <CircularProgress color="inherit" />
       </Backdrop>
       <ToastContainer/>
+          </Box>
+        ):(
+          <Box>
+            <Page404/>
+          </Box>
+        )}
+      
         </>
     )
 }
