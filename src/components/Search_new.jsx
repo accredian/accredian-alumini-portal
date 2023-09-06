@@ -65,7 +65,7 @@ const Search2 =()=>{
     const [designationvalue, setDesignation] = useState('');
     const [organization, setOrganization] = useState('');
     const [techval, setTech] = useState('');
-    const [exp, setExp] = useState(0);
+    const [exp, setExp] = useState('');
     const[image,setImage]=useState('')
     const[linkedin,setLinkedin]=useState('')
     const[github,setGithub]=useState('')
@@ -650,7 +650,7 @@ const Apply=(params)=>{
     setDesignation('')
     setOrganization('')
     setTech('')
-    setExp(0)
+    setExp('')
       const sendData = {
         gender:"male"
        };
