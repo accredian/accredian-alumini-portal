@@ -255,6 +255,7 @@ else{
         setOpenpop(false);
     };
     const handleClickOpenMess = () => {
+      handleClose()
         setOpenmessage(true);
     };
   
@@ -312,7 +313,7 @@ const Exp=[
 // }
 const Apply=(params)=>{
   handleOpenLoader()
-  document.getElementById('pagi').style.display="none"
+  // document.getElementById('pagi').style.display="none"
   // const selectedParams = Object.keys(checkboxes)
   // .filter(key => checkboxes[key])
   // .reduce((params, key) => {
@@ -748,7 +749,7 @@ if(designationvalue==''&&organization==''&&techval==''&&exp==''){
         handleCloseLoader()
         //  console.log(res,"data")
          if(res.data.status==200){
-          toast.success("Your message has been sent to the alum", {
+          toast.success("Your request has been successfully sent to the Alum", {
             position: "top-right",
             autoClose: 2000,
             hideProgressBar: false,
@@ -1265,7 +1266,7 @@ if(designationvalue==''&&organization==''&&techval==''&&exp==''){
 
                 </Box> */}
                <Box sx={{mt:2,mb:1,display:"flex",alignItems:"center",justifyContent:"center"}}>
-                <Pagination
+                {/* <Pagination
                 id="pagi"
         count={count}
         size="large"
@@ -1273,7 +1274,7 @@ if(designationvalue==''&&organization==''&&techval==''&&exp==''){
         // variant="outlined"
         // shape="rounded"
         onChange={handleChangeP}
-      />
+      /> */}
                 </Box>
                 
                 </Paper>
@@ -1366,6 +1367,13 @@ if(designationvalue==''&&organization==''&&techval==''&&exp==''){
       <Dialog open={openmessage}>
         <DialogTitle>Send Message</DialogTitle>
         <DialogContent>
+        <Backdrop
+        sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={openLoader}
+        onClick={handleCloseLoader}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
           <DialogContentText sx={{mb:2}}>
             <i>Please enter the message which you want to send to the alum.</i>
           </DialogContentText>
@@ -1396,7 +1404,14 @@ if(designationvalue==''&&organization==''&&techval==''&&exp==''){
         </DialogActions>
       </Dialog>
 
-      <Backdrop
+    
+          </Box>
+        ):(
+          <Box>
+            <Page404/>
+          </Box>
+        )}
+        <Backdrop
         sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
         open={openLoader}
         onClick={handleCloseLoader}
@@ -1404,13 +1419,6 @@ if(designationvalue==''&&organization==''&&techval==''&&exp==''){
         <CircularProgress color="inherit" />
       </Backdrop>
       <ToastContainer/>
-          </Box>
-        ):(
-          <Box>
-            <Page404/>
-          </Box>
-        )}
-      
         </>
     )
 }
