@@ -1226,7 +1226,7 @@ if(designationvalue==''&&organization==''&&techval==''&&exp==''){
                 ):(
                     <Box>
                              {data.map((val)=>(
-                    <Box sx={{padding:"10px 0px",display:"flex"}}>
+                    <Box onClick={()=>handleClickOpen(val.firstname+" "+val.lastname,val.designation+" at "+val.current_organization+" | "+val.university,val.filename,val.linkedin,val.github,val.email)} sx={{padding:"10px 0px",display:"flex",cursor:"pointer"}}>
                     <Box sx={{ml:2}}>
                         <a style={{
                             position: "relative",
