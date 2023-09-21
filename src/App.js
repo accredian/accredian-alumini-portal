@@ -7,6 +7,7 @@ import AddableSelect from './components/dummy';
 import { useEffect } from 'react';
 import axios from 'axios';
 import Page404 from './components/Page404';
+import Home from './components/Home'
 
 
 function App() {
@@ -15,9 +16,9 @@ function App() {
   return (
     <div className="App">
       {/* <Page404/> */}
-     <Navbar/>
+     {/* <Navbar/> */}
      {/* <Search/> */}
-     <Search2/>
+     <Home/>
      {/* <AddableSelect/> */}
     </div>
   );
