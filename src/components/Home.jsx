@@ -703,7 +703,7 @@ if(designationvalue==''&&organization==''&&techval==''&&exp==''){
     const Reset=()=>{
       setReset(false)
         handleOpenLoader()
-      document.getElementById('pagi').style.display="block"
+      // document.getElementById('pagi').style.display="block"
     //   setCheckboxes([])
     //   setCheckboxesorg([])
     //   setCheckboxestech([])
@@ -795,13 +795,13 @@ if(designationvalue==''&&organization==''&&techval==''&&exp==''){
         <>
         {subbtn?(
           <Box>
-              <Box sx={{background:"#eff1f2",height:"auto",width:{xs:620,lg:"auto",sm:"auto",md:"auto"},pt:{xs:0,sm:0,md:8,lg:8}}}>
+              <Box sx={{background:"#eff1f2",height:"auto",width:{xs:620,lg:"auto",sm:"auto",md:"auto"},pt:{xs:0,sm:0,md:4,lg:8}}}>
             <Box sx={{display:"flex",justifyContent:"center",placeContent:"center"}}>
-                <Paper elevation={3} sx={{borderRadius:"4px",p:2,width:{xs:600,lg:"auto"}}}>
-                    <Box sx={{position:"absolute",ml:{xs:58,lg:84},mt:-2}}>
+                <Paper elevation={3} sx={{borderRadius:"4px",p:2,width:{xs:600,lg:"auto",md:900}}}>
+                    <Box sx={{position:"absolute",ml:{xs:58,lg:84,md:95.5},mt:-2}}>
                         <img style={{position:"absolute",height:100,width:150}} src={side} alt="side"/>
                     </Box>
-                <Typography sx={{mt:1.5,fontWeight:'bold',textAlign:"left",ml:2}}>People</Typography>
+                <Typography sx={{mt:1.5,fontWeight:'bold',textAlign:"left",ml:2,fontSize:{md:"20px"}}}>People</Typography>
                 {/* <Box sx={{
                     position: "absolute",
                     top: "0px",
@@ -831,7 +831,7 @@ if(designationvalue==''&&organization==''&&techval==''&&exp==''){
                     margin: "8px 20px",
                     mb:1
                 }}></Box>
-                <Box sx={{display:{xs:"none",lg:"flex"},justifyContent:"space-between",mt:2,mb:2}}>
+                <Box sx={{display:{xs:"none",lg:"flex",md:"flex"},justifyContent:"space-between",mt:2,mb:2}}>
                   <Box>
                  
 
@@ -1010,15 +1010,12 @@ if(designationvalue==''&&organization==''&&techval==''&&exp==''){
     
       
                 
-                {/* <Typography sx={{fontWeight:"bold",fontSize:"14px"}}>Organization</Typography>
-                <Typography sx={{fontWeight:"bold",fontSize:"14px"}}>Technology</Typography>
-                <Typography sx={{fontWeight:"bold",fontSize:"14px"}}>Experince</Typography>
-                <Typography sx={{fontWeight:"bold",fontSize:"14px"}}>Location</Typography> */}
+                
                 </Box>
 
 
                 {/* filter mobile version */}
-                <Box sx={{display:{xs:"block",lg:"none"},justifyContent:"space-between",mt:2,mb:2}}>
+                <Box sx={{display:{xs:"block",lg:"none",md:"none"},justifyContent:"space-between",mt:2,mb:2}}>
 
                   <Box sx={{display:"flex"}}>
                   <Box>
@@ -1172,26 +1169,7 @@ if(designationvalue==''&&organization==''&&techval==''&&exp==''){
                  
                  
 
-     {/* <Box>
-     <ListItemButton onClick={handleClickLoc}>
-        
-        <ListItemText>
-        <Typography sx={{fontWeight:"bold",fontSize:"14px"}}>Location</Typography>
-        </ListItemText>
-        {openloc ? <ExpandLess sx={{color:"#00bfa9"}} /> : <ExpandMore sx={{color:"#00bfa9"}} />}
-      </ListItemButton>
-      <Collapse in={openloc} timeout="auto" unmountOnExit>
-        <Card>
-        <List component="div" disablePadding>
-          <ListItemButton sx={{ pl: 4 }}>
-            <Checkbox size="small"/>
-            <ListItemText primary="Starred" />
-          </ListItemButton>
-        </List>
-        </Card>
-       
-      </Collapse>
-     </Box> */}
+    
      <Box sx={{display:"flex",ml:2}}>
      <Box>
       <Button sx={{textTransform:"none",background:"#00bfa9",mt:1.5,"&:hover":{color:"#fff",background:"#00c4b5"}}} onClick={Apply} variant="contained" size="small">
@@ -1243,13 +1221,13 @@ if(designationvalue==''&&organization==''&&techval==''&&exp==''){
                             ></img>
                         </a>
                     </Box>
-                    <Box sx={{ml:3,width:{xs:400,lg:500}}}>
-                    <Box sx={{display:"flex"}}><Typography sx={{fontWeight:'bold',textAlign:"left"}}>{val.firstname+" "+val.lastname}</Typography><Typography sx={{ml:1,fontSize:"11px",fontWeight:"bold",mt:0.5,color:"#b6c2d2",width:{xs:130,lg:300},textAlign:"left"}}>{val.qualification}</Typography></Box>
+                    <Box sx={{ml:3,width:{xs:400,lg:500,md:585}}}>
+                    <Box sx={{display:"flex"}}><Typography sx={{fontWeight:'bold',textAlign:"left"}}>{val.firstname+" "+val.lastname}</Typography><Typography sx={{ml:1,fontSize:"11px",fontWeight:"bold",mt:0.5,color:"#b6c2d2",width:{xs:130,lg:300,md:400},textAlign:"left"}}>{val.qualification}</Typography></Box>
                     <Box>
-                        <Typography sx={{color:"#7d8a9c",fontSize:"13px",fontWeight:"bold",textAlign:"left",width:{xs:200,lg:400}}}>{val.designation} at {val.current_organization} | {val.university}</Typography>
+                        <Typography sx={{color:"#7d8a9c",fontSize:"13px",fontWeight:"bold",textAlign:"left",width:{xs:200,lg:400,md:500}}}>{val.designation} at {val.current_organization} | {val.university}</Typography>
                     </Box>
                     </Box>
-                    <Box sx={{width:{xs:100,lg:150}}}>
+                    <Box sx={{width:{xs:100,lg:150,md:150}}}>
                     <Button onClick={()=>handleClickOpen(val.firstname+" "+val.lastname,val.designation+" at "+val.current_organization+" | "+val.university,val.filename,val.linkedin,val.github,val.email)}  variant="contained" size="small"  sx={{color:"#fff",background:"#00c4b5",fotnSize:"10px",textTransform:"none","&:hover":{color:"#fff",background:"#00c4b5"}}}>
                   Connect
                 </Button>
