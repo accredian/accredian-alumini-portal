@@ -17,6 +17,14 @@
    @media (min-width:400px)  { 
 
     .modal{
+      width: 285px;
+      /* background-color: aqua; */
+    }
+  
+   }
+   @media (min-width:410px)  { 
+
+    .modal{
       width: 300px;
       /* background-color: aqua; */
     }
