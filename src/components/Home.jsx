@@ -1448,7 +1448,7 @@ if(designationvalue==''&&organization==''&&techval==''&&exp==''){
       minRows={6}
       onChange={handleChangeMessage}
       placeholder="Enter your Message"
-      style={{ width: 480 }}
+      style={{ width: 300 }}
     />
           {/* <TextField
             autoFocus
