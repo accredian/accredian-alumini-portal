@@ -1081,16 +1081,16 @@ if(designationvalue==''&&organization==''&&techval==''&&exp==''){
                     <Box sx={{position:"absolute",ml:31,mt:-2}}>
                         <img style={{position:"absolute",height:100,width:150}} src={side} alt="side"/>
                     </Box>
-                <Typography sx={{mt:1.5,fontWeight:'bold',textAlign:"left",ml:2,fontSize:{md:"20px"}}}>People</Typography>
+                <Typography sx={{mt:1.5,fontWeight:'bold',textAlign:"left",ml:1,fontSize:{md:"20px"}}}>People</Typography>
                
-                <Box sx={{display:"flex"}}><Typography sx={{mt:2,fontWeight:'bold',textAlign:"left",ml:2}}>{serachData}</Typography><Typography sx={{mt:2,ml:1}}>Accredians</Typography></Box>
+                <Box sx={{display:"flex"}}><Typography sx={{mt:2,fontWeight:'bold',textAlign:"left",ml:1}}>{serachData}</Typography><Typography sx={{mt:2,ml:1}}>Accredians</Typography></Box>
                 
                 <Box sx={{
                     background: "#00bfa9",
                     //  ml:2,
                     height: "2px",
                     width: "20px",
-                    margin: "8px 20px",
+                    margin: "8px 13px",
                     mb:1
                 }}></Box>
                 
@@ -1255,7 +1255,7 @@ if(designationvalue==''&&organization==''&&techval==''&&exp==''){
                  
 
     
-     <Box sx={{display:"flex",ml:2}}>
+     <Box sx={{display:"flex",ml:1}}>
      <Box>
       <Button sx={{textTransform:"none",background:"#00bfa9",mt:1.5,"&:hover":{color:"#fff",background:"#00c4b5"}}} onClick={Apply} variant="contained" size="small">
         Apply Filters
