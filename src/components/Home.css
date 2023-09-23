@@ -6,6 +6,22 @@
     }
   
    }
+   @media (min-width:390px)  { 
+
+    .modal{
+      width: 275px;
+      /* background-color: aqua; */
+    }
+  
+   }
+   @media (min-width:400px)  { 
+
+    .modal{
+      width: 300px;
+      /* background-color: aqua; */
+    }
+  
+   }
 
    @media (min-width:1000px)  { 
 
