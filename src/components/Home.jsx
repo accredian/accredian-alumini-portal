@@ -795,32 +795,14 @@ if(designationvalue==''&&organization==''&&techval==''&&exp==''){
         <>
         {subbtn?(
           <Box>
-              <Box sx={{background:"#eff1f2",height:"auto",width:{xs:420,lg:"auto",sm:"auto",md:"auto"},pt:{xs:0,sm:0,md:4,lg:8}}}>
+              <Box sx={{background:"#eff1f2",height:"auto",width:{lg:"auto",sm:"auto",md:"auto"},pt:{md:4,lg:8},display:{xs:"none",lg:"block",sm:"block",md:"block"}}}>
             <Box sx={{display:"flex",justifyContent:"center",placeContent:"center"}}>
-                <Paper elevation={3} sx={{borderRadius:"4px",p:2,width:{xs:400,lg:"auto",md:900}}}>
-                    <Box sx={{position:"absolute",ml:{xs:31,lg:84,md:95.5},mt:-2}}>
+                <Paper elevation={3} sx={{borderRadius:"4px",p:2,width:{lg:"auto",md:900}}}>
+                    <Box sx={{position:"absolute",ml:{lg:84,md:95.5},mt:-2}}>
                         <img style={{position:"absolute",height:100,width:150}} src={side} alt="side"/>
                     </Box>
                 <Typography sx={{mt:1.5,fontWeight:'bold',textAlign:"left",ml:2,fontSize:{md:"20px"}}}>People</Typography>
-                {/* <Box sx={{
-                    position: "absolute",
-                    top: "0px",
-                    right: "0px",
-                    opacity: 0.15
-                }}>
-                <Box sx={{
-                    // pt:30,
-                    background: "#fcd900",
-                    width: "61.3px",
-                    height: "61.3px",
-                    borderRadius: "30px",
-                    position: "absolute",
-                    top: "20px",
-                    right: "0px"
-                }}>
-
-                </Box>
-                </Box> */}
+               
                 <Box sx={{display:"flex"}}><Typography sx={{mt:2,fontWeight:'bold',textAlign:"left",ml:2}}>{serachData}</Typography><Typography sx={{mt:2,ml:1}}>Accredians</Typography></Box>
                 
                 <Box sx={{
@@ -1014,14 +996,113 @@ if(designationvalue==''&&organization==''&&techval==''&&exp==''){
                 </Box>
 
 
+               
+               
+
+
+
+
+
+                {/* <TextField onChange={handleChange} placeholder="Search" fullWidth type="search" size="small" sx={{width:725,mb:2,ml:1}}></TextField> */}
+                
+                {data.length==0?(
+                    <Box>
+                        <Typography sx={{textAlign:"center",fontSize:"18px"}}>Data Not Found</Typography>
+                    </Box>
+                ):(
+                    <Box>
+                             {data.map((val)=>(
+                    <Box onClick={()=>handleClickOpen(val.firstname+" "+val.lastname,val.designation+" at "+val.current_organization+" | "+val.university,val.filename,val.linkedin,val.github,val.email)} sx={{padding:"10px 0px",display:"flex",cursor:"pointer"}}>
+                    <Box sx={{ml:2}}>
+                        <a style={{
+                            position: "relative",
+                            display:" inline-block",
+                            verticalAlign: "middle"
+                        }} href="#">
+                            <img src={val.filename?`https://www.accredian.com/wp-content/uploads/profile/${val.filename}`:dp}
+                            style={{
+                                height: "56px",
+                                width: "56px",
+                                display: "block",
+                                borderRadius: "28px"
+                            }}
+                            ></img>
+                        </a>
+                    </Box>
+                    <Box sx={{ml:{lg:3,md:3,sm:3},width:{lg:500,md:585}}}>
+                    <Box sx={{display:"flex"}}><Typography sx={{fontWeight:'bold',textAlign:"left"}}>{val.firstname+" "+val.lastname}</Typography><Typography sx={{ml:1,fontSize:"11px",fontWeight:"bold",mt:0.5,color:"#b6c2d2",width:{lg:300,md:400},textAlign:"left"}}>{val.qualification}</Typography></Box>
+                    <Box>
+                        <Typography sx={{color:"#7d8a9c",fontSize:"13px",fontWeight:"bold",textAlign:"left",width:{lg:400,md:500}}}>{val.designation} at {val.current_organization} | {val.university}</Typography>
+                    </Box>
+                    </Box>
+                    <Box sx={{width:{lg:150,md:150}}}>
+                    <Button onClick={()=>handleClickOpen(val.firstname+" "+val.lastname,val.designation+" at "+val.current_organization+" | "+val.university,val.filename,val.linkedin,val.github,val.email)}  variant="contained" size="small"  sx={{color:"#fff",background:"#00c4b5",fotnSize:"10px",textTransform:"none","&:hover":{color:"#fff",background:"#00c4b5"}}}>
+                  Connect
+                </Button>
+                    </Box>
+                    
+                    </Box>
+                ))}
+                
+                    </Box>
+                )}
+                {/* <Box sx={{mb:2,mt:2}}>
+
+                
+
+                </Box> */}
+               <Box sx={{mt:2,mb:1,display:"flex",alignItems:"center",justifyContent:"center"}}>
+                {/* <Pagination
+                id="pagi"
+        count={count}
+        size="large"
+        page={page}
+        // variant="outlined"
+        // shape="rounded"
+        onChange={handleChangeP}
+      /> */}
+                </Box>
+                
+                </Paper>
+            </Box>
+
+
+            
+
+
+        </Box>
+
+        {/* mobile version */}
+
+        {/* <Box sx={{background:"#eff1f2",height:"auto",width:{lg:"auto",sm:"auto",md:"auto"},pt:{md:4,lg:8},display:{xs:"block",lg:"none",sm:"none",md:"none"}}}> */}
+            <Box sx={{display:{xs:"flex",lg:"none",sm:"none",md:"none"}}}>
+                <Paper elevation={3} sx={{borderRadius:"4px",p:2,width:380}}>
+                    <Box sx={{position:"absolute",ml:31,mt:-2}}>
+                        <img style={{position:"absolute",height:100,width:150}} src={side} alt="side"/>
+                    </Box>
+                <Typography sx={{mt:1.5,fontWeight:'bold',textAlign:"left",ml:2,fontSize:{md:"20px"}}}>People</Typography>
+               
+                <Box sx={{display:"flex"}}><Typography sx={{mt:2,fontWeight:'bold',textAlign:"left",ml:2}}>{serachData}</Typography><Typography sx={{mt:2,ml:1}}>Accredians</Typography></Box>
+                
+                <Box sx={{
+                    background: "#00bfa9",
+                    //  ml:2,
+                    height: "2px",
+                    width: "20px",
+                    margin: "8px 20px",
+                    mb:1
+                }}></Box>
+                
+
+
                 {/* filter mobile version */}
                 <Box sx={{display:{xs:"block",lg:"none",md:"none"},justifyContent:"space-between",mt:2,mb:2}}>
 
-                  <Box sx={{display:"flex"}}>
+                  <Box sx={{display:"flex",justifyContent:"space-between"}}>
                   <Box>
                  
 
-                 <FormControl sx={{ m: 1, width: 80,textAlign:"left" }} size="small">
+                 <FormControl sx={{ m: 1, width: 150,textAlign:"left" }} size="small">
                  <Autocomplete
                        disablePortal
                       size="small"
@@ -1047,7 +1128,7 @@ if(designationvalue==''&&organization==''&&techval==''&&exp==''){
                  
                                  
                  <Box>
-                 <FormControl sx={{ m: 1, width: 80,textAlign:"left" }} size="small">
+                 <FormControl sx={{ m: 1, width: 150,textAlign:"left" }} size="small">
                        {/* <InputLabel sx={{fontSize:"14px"}} id="demo-select-small-label">Organization</InputLabel>
                        <Select
                          labelId="demo-select-small-label"
@@ -1092,8 +1173,20 @@ if(designationvalue==''&&organization==''&&techval==''&&exp==''){
                  
                  </Box>
                  
-                 <Box>
-                 <FormControl sx={{ m: 1, width: 80,textAlign:"left",fontSize:"14px" }} size="small">
+                 
+                             {/* <Box >
+          
+     
+        <Box width="48px" sx={{color:"#fff",background:"#d3d3d3","&:hover":{color:"#fff",background:"#d3d3d3"},cursor:"pointer",textAlign:"center",p:1,borderRadius:"2px"}} size="small" onClick={handleIncrement}>+</Box>
+         <Box width="40px" sx={{textAlign:"center",p:1}} size="small" disabled>{exp}</Box>
+     {displayCounter &&  <Box width="48px" sx={{color:"#fff",background:"#d3d3d3","&:hover":{color:"#fff",background:"#d3d3d3"},cursor:"pointer",textAlign:"center",p:1,borderRadius:"2px"}} size="small" onClick={handledecrement}>-</Box> }
+      
+           </Box> */}
+
+                  </Box>
+                  <Box sx={{display:"flex",justifyContent:"space-between"}}>
+                  <Box>
+                 <FormControl sx={{ m: 1, width: 150,textAlign:"left",fontSize:"14px" }} size="small">
                        {/* <InputLabel sx={{fontSize:"14px"}} id="demo-select-small-label">Technology</InputLabel>
                        <Select
                          labelId="demo-select-small-label"
@@ -1131,7 +1224,7 @@ if(designationvalue==''&&organization==''&&techval==''&&exp==''){
                      </FormControl>
                  </Box>
                             <Box>
-                            <FormControl sx={{ m: 1, width: 80,textAlign:"left",fontSize:"14px" }} size="small">
+                            <FormControl sx={{ m: 1, width: 150,textAlign:"left",fontSize:"14px" }} size="small">
                       
                         <Autocomplete
                        disablePortal
@@ -1155,15 +1248,6 @@ if(designationvalue==''&&organization==''&&techval==''&&exp==''){
                      />
                      </FormControl>
                             </Box>
-                             {/* <Box >
-          
-     
-        <Box width="48px" sx={{color:"#fff",background:"#d3d3d3","&:hover":{color:"#fff",background:"#d3d3d3"},cursor:"pointer",textAlign:"center",p:1,borderRadius:"2px"}} size="small" onClick={handleIncrement}>+</Box>
-         <Box width="40px" sx={{textAlign:"center",p:1}} size="small" disabled>{exp}</Box>
-     {displayCounter &&  <Box width="48px" sx={{color:"#fff",background:"#d3d3d3","&:hover":{color:"#fff",background:"#d3d3d3"},cursor:"pointer",textAlign:"center",p:1,borderRadius:"2px"}} size="small" onClick={handledecrement}>-</Box> }
-      
-           </Box> */}
-
                   </Box>
 
                  
@@ -1221,13 +1305,13 @@ if(designationvalue==''&&organization==''&&techval==''&&exp==''){
                             ></img>
                         </a>
                     </Box>
-                    <Box sx={{ml:{xs:1.5,lg:3,md:3,sm:3},width:{xs:200,lg:500,md:585}}}>
-                    <Box sx={{display:"flex"}}><Typography sx={{fontWeight:'bold',textAlign:"left"}}>{val.firstname+" "+val.lastname}</Typography><Typography sx={{ml:1,fontSize:"11px",fontWeight:"bold",mt:0.5,color:"#b6c2d2",width:{xs:100,lg:300,md:400},textAlign:"left"}}>{val.qualification}</Typography></Box>
+                    <Box sx={{ml:1.5,width:170}}>
+                    <Box sx={{display:"flex"}}><Typography sx={{fontWeight:'bold',textAlign:"left"}}>{val.firstname+" "+val.lastname}</Typography><Typography sx={{ml:1,fontSize:"11px",fontWeight:"bold",mt:0.5,color:"#b6c2d2",width:70,textAlign:"left"}}>{val.qualification}</Typography></Box>
                     <Box>
-                        <Typography sx={{color:"#7d8a9c",fontSize:"13px",fontWeight:"bold",textAlign:"left",width:{xs:150,lg:400,md:500}}}>{val.designation} at {val.current_organization} | {val.university}</Typography>
+                        <Typography sx={{color:"#7d8a9c",fontSize:"13px",fontWeight:"bold",textAlign:"left",width:120}}>{val.designation} at {val.current_organization} | {val.university}</Typography>
                     </Box>
                     </Box>
-                    <Box sx={{width:{xs:100,lg:150,md:150}}}>
+                    <Box sx={{width:100}} >
                     <Button onClick={()=>handleClickOpen(val.firstname+" "+val.lastname,val.designation+" at "+val.current_organization+" | "+val.university,val.filename,val.linkedin,val.github,val.email)}  variant="contained" size="small"  sx={{color:"#fff",background:"#00c4b5",fotnSize:"10px",textTransform:"none","&:hover":{color:"#fff",background:"#00c4b5"}}}>
                   Connect
                 </Button>
@@ -1262,7 +1346,10 @@ if(designationvalue==''&&organization==''&&techval==''&&exp==''){
             
 
 
-        </Box>
+        {/* </Box> */}
+
+
+
         <Dialog
         open={openpop}
         // onClose={handleClose}
