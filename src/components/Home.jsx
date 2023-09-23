@@ -16,6 +16,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import axios from 'axios'
 import Pagination from '@mui/material/Pagination';
+import './Home.css'
 import usePagination from "./Pagination";
 import { CheckBox } from "@mui/icons-material";
 import Checkbox from '@mui/material/Checkbox';
@@ -1445,10 +1446,12 @@ if(designationvalue==''&&organization==''&&techval==''&&exp==''){
           <TextareaAutosize
           fullWidth
       aria-label="minimum height"
+      className="modal"
       minRows={6}
       onChange={handleChangeMessage}
       placeholder="Enter your Message"
-      style={{ width: 300 }}
+      // style={{ width: 480 }}
+      // sx={{width:400}}
     />
           {/* <TextField
             autoFocus
