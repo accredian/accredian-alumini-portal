@@ -795,10 +795,10 @@ if(designationvalue==''&&organization==''&&techval==''&&exp==''){
         <>
         {subbtn?(
           <Box>
-              <Box sx={{background:"#eff1f2",height:"auto",width:{xs:620,lg:"auto",sm:"auto",md:"auto"},pt:{xs:0,sm:0,md:4,lg:8}}}>
+              <Box sx={{background:"#eff1f2",height:"auto",width:{xs:420,lg:"auto",sm:"auto",md:"auto"},pt:{xs:0,sm:0,md:4,lg:8}}}>
             <Box sx={{display:"flex",justifyContent:"center",placeContent:"center"}}>
-                <Paper elevation={3} sx={{borderRadius:"4px",p:2,width:{xs:600,lg:"auto",md:900}}}>
-                    <Box sx={{position:"absolute",ml:{xs:58,lg:84,md:95.5},mt:-2}}>
+                <Paper elevation={3} sx={{borderRadius:"4px",p:2,width:{xs:400,lg:"auto",md:900}}}>
+                    <Box sx={{position:"absolute",ml:{xs:31,lg:84,md:95.5},mt:-2}}>
                         <img style={{position:"absolute",height:100,width:150}} src={side} alt="side"/>
                     </Box>
                 <Typography sx={{mt:1.5,fontWeight:'bold',textAlign:"left",ml:2,fontSize:{md:"20px"}}}>People</Typography>
@@ -1021,7 +1021,7 @@ if(designationvalue==''&&organization==''&&techval==''&&exp==''){
                   <Box>
                  
 
-                 <FormControl sx={{ m: 1, width: 135,textAlign:"left" }} size="small">
+                 <FormControl sx={{ m: 1, width: 80,textAlign:"left" }} size="small">
                  <Autocomplete
                        disablePortal
                       size="small"
@@ -1047,7 +1047,7 @@ if(designationvalue==''&&organization==''&&techval==''&&exp==''){
                  
                                  
                  <Box>
-                 <FormControl sx={{ m: 1, width: 135,textAlign:"left" }} size="small">
+                 <FormControl sx={{ m: 1, width: 80,textAlign:"left" }} size="small">
                        {/* <InputLabel sx={{fontSize:"14px"}} id="demo-select-small-label">Organization</InputLabel>
                        <Select
                          labelId="demo-select-small-label"
@@ -1093,7 +1093,7 @@ if(designationvalue==''&&organization==''&&techval==''&&exp==''){
                  </Box>
                  
                  <Box>
-                 <FormControl sx={{ m: 1, width: 135,textAlign:"left",fontSize:"14px" }} size="small">
+                 <FormControl sx={{ m: 1, width: 80,textAlign:"left",fontSize:"14px" }} size="small">
                        {/* <InputLabel sx={{fontSize:"14px"}} id="demo-select-small-label">Technology</InputLabel>
                        <Select
                          labelId="demo-select-small-label"
@@ -1131,7 +1131,7 @@ if(designationvalue==''&&organization==''&&techval==''&&exp==''){
                      </FormControl>
                  </Box>
                             <Box>
-                            <FormControl sx={{ m: 1, width: 135,textAlign:"left",fontSize:"14px" }} size="small">
+                            <FormControl sx={{ m: 1, width: 80,textAlign:"left",fontSize:"14px" }} size="small">
                       
                         <Autocomplete
                        disablePortal
@@ -1221,10 +1221,10 @@ if(designationvalue==''&&organization==''&&techval==''&&exp==''){
                             ></img>
                         </a>
                     </Box>
-                    <Box sx={{ml:3,width:{xs:400,lg:500,md:585}}}>
-                    <Box sx={{display:"flex"}}><Typography sx={{fontWeight:'bold',textAlign:"left"}}>{val.firstname+" "+val.lastname}</Typography><Typography sx={{ml:1,fontSize:"11px",fontWeight:"bold",mt:0.5,color:"#b6c2d2",width:{xs:130,lg:300,md:400},textAlign:"left"}}>{val.qualification}</Typography></Box>
+                    <Box sx={{ml:{xs:1.5,lg:3,md:3,sm:3},width:{xs:200,lg:500,md:585}}}>
+                    <Box sx={{display:"flex"}}><Typography sx={{fontWeight:'bold',textAlign:"left"}}>{val.firstname+" "+val.lastname}</Typography><Typography sx={{ml:1,fontSize:"11px",fontWeight:"bold",mt:0.5,color:"#b6c2d2",width:{xs:100,lg:300,md:400},textAlign:"left"}}>{val.qualification}</Typography></Box>
                     <Box>
-                        <Typography sx={{color:"#7d8a9c",fontSize:"13px",fontWeight:"bold",textAlign:"left",width:{xs:200,lg:400,md:500}}}>{val.designation} at {val.current_organization} | {val.university}</Typography>
+                        <Typography sx={{color:"#7d8a9c",fontSize:"13px",fontWeight:"bold",textAlign:"left",width:{xs:150,lg:400,md:500}}}>{val.designation} at {val.current_organization} | {val.university}</Typography>
                     </Box>
                     </Box>
                     <Box sx={{width:{xs:100,lg:150,md:150}}}>
